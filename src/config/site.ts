@@ -3,6 +3,8 @@ export const site = {
   short_name: 'Trail Artistry',
   description: 'Gracefully illuminating cursor movements',
   url: 'https://luminoustrailartistry.my.id',
+
+  // TODO: Change `opengraph_image` value.
   opengraph_image: '/opengraph-image.png',
 }
 

@@ -5,13 +5,22 @@ import '@/styles/globals.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: site.name,
   description: site.description,
   authors: [
     {
-      name: 'fiquell',
       url: 'https://fiquell.com',
+      name: 'fiquell',
     },
+  ],
+  keywords: [
+    'Next.js',
+    'React',
+    'Tailwind CSS',
+    '2D Context Graphics',
+    'Interactive Canvas Animation',
+    'JavaScript Drawing Effects',
   ],
   creator: 'fiquell',
   openGraph: {
@@ -52,7 +61,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     <html lang='en'>
       <body
         className={cn(
-          'bg-background text-foreground font-sans antialiased',
+          'bg-background font-sans text-foreground antialiased',
           inter.variable
         )}>
         {children}
