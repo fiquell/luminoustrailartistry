@@ -3,13 +3,13 @@ import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Luminous Trail Artistry',
   description: 'Gracefully illuminating cursor movements',
   icons: {
     icon: '/favicon.ico',
   },
-} satisfies Metadata
+}
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -18,7 +18,11 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang='en'>
-      <body className={cn('font-sans antialiased', inter.variable)}>
+      <body
+        className={cn(
+          'bg-background text-foreground font-sans antialiased',
+          inter.variable
+        )}>
         {children}
       </body>
     </html>
