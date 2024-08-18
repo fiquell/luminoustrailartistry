@@ -8,22 +8,22 @@ const Manifest = (): MetadataRoute.Manifest => {
     description: site.description,
     icons: [
       {
-        src: '/icon-16x16.png',
+        src: '/16x16.png',
         type: 'image/png',
         sizes: '16x16',
       },
       {
-        src: '/icon-32x32.png',
+        src: '/32x32.png',
         type: 'image/png',
         sizes: '32x32',
       },
       {
-        src: '/icon-192x192.png',
+        src: '/192x192.png',
         type: 'image/png',
         sizes: '192x192',
       },
       {
-        src: '/icon-512x512.png',
+        src: '/512x512.png',
         type: 'image/png',
         sizes: '512x512',
       },
