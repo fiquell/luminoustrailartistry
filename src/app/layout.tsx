@@ -1,13 +1,45 @@
+import { site } from '@/config/site'
 import { inter } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Luminous Trail Artistry',
-  description: 'Gracefully illuminating cursor movements',
+  title: site.name,
+  description: site.description,
+  authors: [
+    {
+      name: 'fiquell',
+      url: 'https://fiquell.com',
+    },
+  ],
+  creator: 'fiquell',
+  openGraph: {
+    type: 'website',
+    url: site.url,
+    title: site.name,
+    description: site.description,
+    siteName: site.name,
+    images: [
+      {
+        url: site.opengraph_image,
+        type: 'image/png',
+        width: 1200,
+        height: 630,
+        alt: site.name,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@_fiquell',
+    title: site.name,
+    description: site.description,
+    images: site.opengraph_image,
+  },
   icons: {
     icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
 }
 
