@@ -3,6 +3,7 @@ import { inter } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
+import { ReactNode } from 'react'
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
 }
 
 interface RootLayoutProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const RootLayout = ({ children }: RootLayoutProps) => {

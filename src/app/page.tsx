@@ -1,43 +1,40 @@
 // TODO: Rewrite all code.
+
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-
-interface Trail {
-  x: number
-  y: number
-  dx: number
-  dy: number
-}
-
-interface Pointer {
-  x: number
-  y: number
-}
-
-const config = {
-  point: 30,
-  widthFactor: 0.3,
-  springFactor: 0.4,
-  frictionFactor: 0.5,
-}
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 const Home = () => {
-  const [isMouseMoved, setIsMouseMoved] = useState<boolean>(false)
-  const [isPointer, setIsPointer] = useState<Pointer>({
-    x: 0.5 * window.innerWidth,
-    y: 0.5 * window.innerHeight,
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+  const [isMouseMoved, setIsMouseMoved] = useState(false)
+  const [pointer, setPointer] = useState({
+    x: 0.5 * windowSize.width,
+    y: 0.5 * windowSize.height,
   })
 
+  const config = useMemo(
+    () => ({
+      point: 60,
+      widthFactor: 0.3,
+      springFactor: 0.4,
+      frictionFactor: 0.5,
+    }),
+    []
+  )
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const trailRef = useRef<Trail[]>(
+  const trailRef = useRef(
     Array.from({ length: config.point }, () => ({
-      x: isPointer.x,
-      y: isPointer.y,
+      x: pointer.x,
+      y: pointer.y,
       dx: 0,
       dy: 0,
     }))
   )
+
+  const updatePointer = (x: number, y: number) => {
+    setPointer({ x, y })
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -46,85 +43,88 @@ const Home = () => {
       return
     }
 
-    const ctx = canvas.getContext('2d')
+    const handleResizeCanvas = () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }
+
+    const handleResizeWindow = () => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight })
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      setIsMouseMoved(true)
+      updatePointer(e.pageX, e.pageY)
+      setTimeout(() => setIsMouseMoved(false), 1000)
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const touch = e.targetTouches[0]
+
+      setIsMouseMoved(true)
+      updatePointer(touch.pageX, touch.pageY)
+      setTimeout(() => setIsMouseMoved(false), 1000)
+    }
+
+    handleResizeCanvas()
+
+    if (typeof window !== 'undefined') {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight })
+    }
+
+    window.addEventListener('resize', handleResizeCanvas)
+    window.addEventListener('resize', handleResizeWindow)
+    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('touchmove', handleTouchMove)
+
+    return () => {
+      window.removeEventListener('resize', handleResizeCanvas)
+      window.removeEventListener('resize', handleResizeWindow)
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('touchmove', handleTouchMove)
+    }
+  }, [])
+
+  useEffect(() => {
+    const ctx = canvasRef.current?.getContext('2d')
 
     if (!ctx) {
       return
     }
 
-    const initializeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-
-    const handleClick = (event: MouseEvent) => {
-      setIsPointer({ x: event.pageX, y: event.pageY })
-    }
-
-    const handleMouseMove = (event: MouseEvent) => {
-      setIsMouseMoved(true)
-      setIsPointer({ x: event.pageX, y: event.pageY })
-
-      setTimeout(() => {
-        setIsMouseMoved(false)
-      }, 1000)
-    }
-
-    const handleTouchMove = (event: TouchEvent) => {
-      const touch = event.targetTouches[0]
-
-      setIsMouseMoved(true)
-      setIsPointer({ x: touch.pageX, y: touch.pageY })
-
-      setTimeout(() => {
-        setIsMouseMoved(false)
-      }, 1000)
-    }
-
-    const animate = (timestamp: number) => {
+    const animate = (t: number) => {
       if (!isMouseMoved) {
-        setIsPointer(() => ({
+        setPointer({
           x:
-            0.5 +
-            0.3 *
-              Math.cos(0.002 * timestamp) *
-              Math.sin(0.005 * timestamp) *
-              window.innerWidth,
+            (0.5 + 0.3 * Math.cos(0.002 * t) * Math.sin(0.005 * t)) *
+            window.innerWidth,
           y:
-            0.5 +
-            0.2 * Math.cos(0.005 * timestamp) +
-            0.1 * Math.cos(0.01 * timestamp) * window.innerHeight,
-        }))
+            (0.5 + 0.2 * Math.cos(0.005 * t) + 0.4 * Math.cos(0.001 * t)) *
+            window.innerHeight,
+        })
       }
 
-      trailRef.current.map((previous, index) => {
-        const target = index === 0 ? isPointer : trailRef.current[index - 1]
-        const factor =
-          index === 0 ? 0.4 * config.springFactor : config.springFactor
+      trailRef.current.forEach((p, i) => {
+        const target = i === 0 ? pointer : trailRef.current[i - 1]
+        const factor = i === 0 ? 0.4 * config.springFactor : config.springFactor
 
-        previous.dx += target.x - previous.x * factor
-        previous.dy += target.y - previous.y * factor
-        previous.dx *= config.frictionFactor
-        previous.dy *= config.frictionFactor
-        previous.x + previous.dx
-        previous.y + previous.dy
-
-        return previous
+        p.dx += (target.x - p.x) * factor
+        p.dy += (target.y - p.y) * factor
+        p.dx *= config.frictionFactor
+        p.dy *= config.frictionFactor
+        p.x += p.dx
+        p.y += p.dy
       })
 
-      // trailRef.current = trail
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
+      ctx.clearRect(0, 0, canvasRef.current!.width, canvasRef.current!.height)
       ctx.lineCap = 'round'
-      ctx.strokeStyle = '#7469b6'
-
+      ctx.strokeStyle = '#c5705d'
       ctx.beginPath()
       ctx.moveTo(trailRef.current[0].x, trailRef.current[0].y)
 
-      for (let i = 0; i < trailRef.current.length - 1; i++) {
-        const xc = 0.5 * trailRef.current[i].x + trailRef.current[i + 1].x
-        const yc = 0.5 * trailRef.current[i].y + trailRef.current[i + 1].y
+      for (let i = 1; i < trailRef.current.length - 1; i++) {
+        const xc = 0.5 * (trailRef.current[i].x + trailRef.current[i + 1].x)
+        const yc = 0.5 * (trailRef.current[i].y + trailRef.current[i + 1].y)
 
         ctx.quadraticCurveTo(
           trailRef.current[i].x,
@@ -132,7 +132,7 @@ const Home = () => {
           xc,
           yc
         )
-        ctx.lineWidth = config.widthFactor * config.point - i
+        ctx.lineWidth = config.widthFactor * (config.point - i)
         ctx.stroke()
       }
 
@@ -145,21 +145,8 @@ const Home = () => {
       window.requestAnimationFrame(animate)
     }
 
-    initializeCanvas()
-    animate(0)
-
-    window.addEventListener('resize', initializeCanvas)
-    window.addEventListener('click', handleClick)
-    window.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('touchmove', handleTouchMove)
-
-    return () => {
-      window.removeEventListener('resize', initializeCanvas)
-      window.removeEventListener('click', handleClick)
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('touchmove', handleTouchMove)
-    }
-  }, [isMouseMoved, isPointer])
+    window.requestAnimationFrame(animate)
+  }, [config, isMouseMoved, pointer])
 
   return <canvas ref={canvasRef} />
 }
