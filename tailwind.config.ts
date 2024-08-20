@@ -7,6 +7,12 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '2rem',
+      },
+    },
     extend: {
       colors: {
         background: 'hsl(var(--background))',
