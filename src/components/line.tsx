@@ -38,8 +38,6 @@ const Line = () => {
 
     if (Math.abs(progressRef.current) > 1) {
       frame = requestAnimationFrame(animatePath)
-    } else {
-      resetAnimation()
     }
   }
 
