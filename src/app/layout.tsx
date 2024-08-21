@@ -65,7 +65,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           'bg-background font-sans text-foreground antialiased',
           inter.variable
         )}>
-        <main className='container'>{children}</main>
+        <main>{children}</main>
       </body>
     </html>
   )
