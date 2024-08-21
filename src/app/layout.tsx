@@ -2,7 +2,7 @@ import { site } from '@/config/site'
 import { inter } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
-import type { Metadata } from 'next'
+import { Metadata } from 'next'
 import { ReactNode } from 'react'
 
 export const metadata: Metadata = {

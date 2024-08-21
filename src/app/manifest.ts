@@ -1,5 +1,5 @@
 import { site } from '@/config/site'
-import type { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next'
 
 const Manifest = (): MetadataRoute.Manifest => {
   return {

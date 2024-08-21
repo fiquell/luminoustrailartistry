@@ -1,7 +1,6 @@
 'use client'
 
-import type { MouseEvent } from 'react'
-import { useCallback, useEffect, useRef } from 'react'
+import { MouseEvent, useCallback, useEffect, useRef } from 'react'
 
 const Line = () => {
   const svgRef = useRef<SVGSVGElement>(null)
