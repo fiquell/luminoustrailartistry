@@ -24,7 +24,7 @@ const Line = () => {
     return start * (1 - factor) + end * factor
   }
 
-  const resetAnimation = () => {
+  const resetPath = () => {
     progressRef.current = 0
     duration = Math.PI / 2
   }
@@ -44,7 +44,7 @@ const Line = () => {
   const handleMouseEnter = () => {
     if (frame) {
       cancelAnimationFrame(frame)
-      resetAnimation()
+      resetPath()
     }
   }
 
