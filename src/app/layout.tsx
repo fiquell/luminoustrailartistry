@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     'Next.js',
     'React',
     'Tailwind CSS',
+    'Framer Motion',
     '2D Context Graphics',
     'Interactive Canvas Animation',
     'JavaScript Drawing Effects',
