@@ -77,7 +77,7 @@ const LinkPreview = ({
     return `https://api.microlink.io/?${params}`
   }, [url, width, height, imageSrc, isStatic])
 
-  const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
+  const handleMouseMove = (event: MouseEvent<HTMLAnchorElement>) => {
     const { left, width } = event.currentTarget.getBoundingClientRect()
     const mouseX = event.clientX - left
     const centerOffset = (mouseX - width / 2) / 2

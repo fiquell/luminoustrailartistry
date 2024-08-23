@@ -8,13 +8,6 @@ const Line = () => {
   const pathXRef = useRef(0.5)
   const progressRef = useRef(0)
 
-  let frame: number
-  let duration = Math.PI / 2
-
-  const interpolate = (start: number, end: number, factor: number) => {
-    return start * (1 - factor) + end * factor
-  }
-
   const updatePath = useCallback((progress: number) => {
     const width = svgRef.current?.getBoundingClientRect().width || 0
 
@@ -23,6 +16,13 @@ const Line = () => {
       `M0 104 Q${width * pathXRef.current} ${104 + progress}, ${width} 104`
     )
   }, [])
+
+  let frame: number
+  let duration = Math.PI / 2
+
+  const interpolate = (start: number, end: number, factor: number) => {
+    return start * (1 - factor) + end * factor
+  }
 
   const resetAnimation = () => {
     progressRef.current = 0
@@ -53,8 +53,8 @@ const Line = () => {
     const pathBounds = pathRef.current?.getBoundingClientRect()
 
     if (pathBounds) {
-      progressRef.current += movementY * 0.8
       pathXRef.current = (clientX - pathBounds.left) / pathBounds.width
+      progressRef.current += movementY * 0.8
       updatePath(progressRef.current)
     }
   }
