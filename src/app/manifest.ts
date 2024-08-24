@@ -1,37 +1,37 @@
-import { site } from '@/config/site'
+import { siteConfig } from '@/config/site-config'
 import { MetadataRoute } from 'next'
 
 const Manifest = (): MetadataRoute.Manifest => {
   return {
-    name: site.name,
-    short_name: site.short_name,
-    description: site.description,
+    name: siteConfig.name,
+    short_name: siteConfig.short_name,
+    description: siteConfig.description,
     icons: [
       {
-        src: '/16x16.png',
+        src: `${siteConfig.url}/16x16.png`,
         type: 'image/png',
         sizes: '16x16',
       },
       {
-        src: '/32x32.png',
+        src: `${siteConfig.url}/32x32.png`,
         type: 'image/png',
         sizes: '32x32',
       },
       {
-        src: '/192x192.png',
+        src: `${siteConfig.url}/192x192.png`,
         type: 'image/png',
         sizes: '192x192',
       },
       {
-        src: '/512x512.png',
+        src: `${siteConfig.url}/512x512.png`,
         type: 'image/png',
         sizes: '512x512',
       },
     ],
     id: '/',
     start_url: '/',
-    theme_color: '#ffe6e6',
-    background_color: '#ffe6e6',
+    theme_color: siteConfig.color,
+    background_color: siteConfig.color,
     display: 'standalone',
   }
 }

@@ -1,4 +1,4 @@
-import { site } from '@/config/site'
+import { siteConfig } from '@/config/site-config'
 import { inter } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
@@ -6,9 +6,9 @@ import { Metadata } from 'next'
 import { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: site.name,
-  description: site.description,
+  metadataBase: new URL(siteConfig.url),
+  title: siteConfig.name,
+  description: siteConfig.description,
   authors: [
     {
       url: 'https://fiquell.com',
@@ -27,26 +27,26 @@ export const metadata: Metadata = {
   creator: 'fiquell',
   openGraph: {
     type: 'website',
-    url: site.url,
-    title: site.name,
-    description: site.description,
-    siteName: site.name,
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
     images: [
       {
-        url: site.opengraph_image,
+        url: siteConfig.opengraph_image,
         type: 'image/png',
         width: 1200,
         height: 630,
-        alt: site.name,
+        alt: siteConfig.name,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     creator: '@_fiquell',
-    title: site.name,
-    description: site.description,
-    images: site.opengraph_image,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: siteConfig.opengraph_image,
   },
   icons: {
     icon: '/favicon.ico',
