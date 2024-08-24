@@ -6,9 +6,9 @@ const Home = () => {
     <section className='flex min-h-screen flex-col justify-center'>
       <Line />
       <div className='container'>
-        <div className='ml-auto flex w-3/4 gap-6 font-medium'>
-          <p className='mt-3 text-nowrap'>Smart Development</p>
-          <p className='text-3xl leading-normal'>
+        <div className='flex flex-col gap-6 font-medium lg:ml-auto lg:w-3/4 lg:flex-row'>
+          <p className='lg:mt-3 lg:text-nowrap'>Smart Development</p>
+          <p className='text-2xl leading-normal lg:text-3xl'>
             Our website is launching soon, built with cutting-edge technology
             including{' '}
             <LinkPreview url='https://www.tailwindcss.com/'>
