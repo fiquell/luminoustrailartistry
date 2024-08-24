@@ -18,7 +18,6 @@ interface LinkPreviewProps {
   url: string
   width?: number
   height?: number
-  layout?: string
   quality?: number
   imageSrc?: string
   isStatic?: boolean
@@ -42,7 +41,6 @@ const LinkPreview = ({
   url,
   width = 400,
   height = 225,
-  layout = 'fixed',
   quality = 50,
   imageSrc = '',
   isStatic = false,
@@ -97,7 +95,6 @@ const LinkPreview = ({
             src={generatePreviewUrl()}
             width={width}
             height={height}
-            layout={layout}
             quality={quality}
             priority={true}
             alt='Preload preview image'
@@ -111,9 +108,11 @@ const LinkPreview = ({
         <HoverCardPrimitive.Trigger
           href={url}
           target='_blank'
+          rel='noopener noreferrer'
           onMouseMove={handleMouseMove}
           className={cn('font-bold', className)}>
-          {children}
+          {' '}
+          {children}{' '}
         </HoverCardPrimitive.Trigger>
         <HoverCardPrimitive.Content align='center' side='top' sideOffset={10}>
           <AnimatePresence>
@@ -134,7 +133,6 @@ const LinkPreview = ({
                     src={generatePreviewUrl()}
                     width={width}
                     height={height}
-                    layout={layout}
                     quality={quality}
                     priority={true}
                     alt='Link preview'
