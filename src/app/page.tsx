@@ -13,15 +13,15 @@ const Home = () => {
               Our website is launching soon, built with cutting-edge technology
               including
             </span>
-            <LinkPreview url='https://www.tailwindcss.com/'>
+            <LinkPreview url='https://www.tailwindcss.com'>
               Tailwind CSS
             </LinkPreview>
             <span>for beautiful design,</span>
-            <LinkPreview url='https://www.framer.com/motion/'>
+            <LinkPreview url='https://www.framer.com/motion'>
               Framer Motion
             </LinkPreview>
             <span>for smooth animations, and powered by the</span>
-            <LinkPreview url='https://nextjs.org/'>Next.js</LinkPreview>
+            <LinkPreview url='https://nextjs.org'>Next.js</LinkPreview>
             <span>
               framework for top-notch performance. In the meantime, relax with a
               llama while we finalize the details. We can&apos;t wait to show

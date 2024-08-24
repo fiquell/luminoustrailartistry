@@ -49,8 +49,8 @@ export const metadata: Metadata = {
     images: siteConfig.opengraph_image,
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: `${siteConfig.url}/favicon.ico`,
+    apple: `${siteConfig.url}/apple-touch-icon.png`,
   },
 }
 
