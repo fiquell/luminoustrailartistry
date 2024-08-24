@@ -1,11 +1,10 @@
-export const site = {
+export const siteConfig = {
   name: 'Luminous Trail Artistry',
   short_name: 'Trail Artistry',
   description: 'Gracefully illuminating cursor movements',
   url: 'https://luminoustrailartistry.my.id',
-
-  // TODO: Change `opengraph_image` value.
-  opengraph_image: '/opengraph-image.png',
+  opengraph_image: 'https://luminoustrailartistry.my.id/opengraph-image.png',
+  color: '#ffe6e6',
 }
 
-export type Site = typeof site
+export type SiteConfig = typeof siteConfig
