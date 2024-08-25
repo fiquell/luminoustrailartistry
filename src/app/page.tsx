@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <section className='flex min-h-screen flex-col justify-center'>
       <Line />
-      <div className='container'>
+      <div className='container mb-32'>
         <div className='flex flex-col gap-6 font-medium lg:ml-auto lg:w-3/4 lg:flex-row'>
           <p className='lg:mt-3 lg:text-nowrap'>Smart Development</p>
           <div className='text-2xl lg:text-3xl'>
