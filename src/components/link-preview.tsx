@@ -11,10 +11,10 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { encode } from 'qss'
-import { MouseEvent, useCallback, useEffect, useState } from 'react'
+import { MouseEvent, ReactNode, useCallback, useEffect, useState } from 'react'
 
 interface LinkPreviewProps {
-  children: React.ReactNode
+  children: ReactNode
   url: string
   width?: number
   height?: number
