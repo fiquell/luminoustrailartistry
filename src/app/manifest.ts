@@ -1,7 +1,7 @@
 import { siteConfig } from '@/config/site-config'
 import { MetadataRoute } from 'next'
 
-const Manifest = (): MetadataRoute.Manifest => {
+const manifest = (): MetadataRoute.Manifest => {
   return {
     name: siteConfig.name,
     short_name: siteConfig.short_name,
@@ -36,4 +36,4 @@ const Manifest = (): MetadataRoute.Manifest => {
   }
 }
 
-export default Manifest
+export default manifest
