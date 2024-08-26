@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { siteConfig } from '@/config/site-config'
 import { inter } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
@@ -61,6 +62,7 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang='en'>
+      <GoogleAnalytics gaId='G-290KN8LRVJ' />
       <body
         className={cn(
           'bg-background font-sans text-foreground antialiased',
