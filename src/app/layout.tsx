@@ -1,4 +1,4 @@
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import { siteConfig } from '@/config/site-config'
 import { inter } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
@@ -63,6 +63,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang='en'>
       <GoogleAnalytics gaId='G-290KN8LRVJ' />
+      <GoogleTagManager gtmId='GTM-PZ9C7MSZ' />
       <body
         className={cn(
           'bg-background font-sans text-foreground antialiased',
