@@ -26,6 +26,10 @@ export const metadata: Metadata = {
     'JavaScript Drawing Effects',
   ],
   creator: 'fiquell',
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     type: 'website',
     url: siteConfig.url,
