@@ -1,6 +1,5 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import * as HoverCardPrimitive from '@radix-ui/react-hover-card'
 import {
   AnimatePresence,
@@ -12,6 +11,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { encode } from 'qss'
 import { MouseEvent, ReactNode, useCallback, useEffect, useState } from 'react'
+
+import { cn } from '@/lib/utils'
 
 interface LinkPreviewProps {
   children: ReactNode

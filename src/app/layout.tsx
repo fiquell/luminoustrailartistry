@@ -1,10 +1,11 @@
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import { Metadata } from 'next'
+import { ReactNode } from 'react'
+
 import { siteConfig } from '@/config/site-config'
 import { inter } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
-import { Metadata } from 'next'
-import { ReactNode } from 'react'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

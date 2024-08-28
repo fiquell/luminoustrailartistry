@@ -1,5 +1,6 @@
-import { siteConfig } from '@/config/site-config'
 import { MetadataRoute } from 'next'
+
+import { siteConfig } from '@/config/site-config'
 
 const sitemap = (): MetadataRoute.Sitemap => {
   return [
