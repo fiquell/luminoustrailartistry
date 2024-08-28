@@ -9,16 +9,6 @@ const manifest = (): MetadataRoute.Manifest => {
     description: siteConfig.description,
     icons: [
       {
-        src: `${siteConfig.url}/16x16.png`,
-        type: 'image/png',
-        sizes: '16x16',
-      },
-      {
-        src: `${siteConfig.url}/32x32.png`,
-        type: 'image/png',
-        sizes: '32x32',
-      },
-      {
         src: `${siteConfig.url}/192x192.png`,
         type: 'image/png',
         sizes: '192x192',
