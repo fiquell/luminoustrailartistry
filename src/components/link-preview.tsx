@@ -47,7 +47,7 @@ const LinkPreview = ({
   isStatic = false,
   className,
 }: LinkPreviewPropsUnion) => {
-  const [isOpen, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
 
   const horizontalOffset = useMotionValue(0)
@@ -103,7 +103,7 @@ const LinkPreview = ({
         </div>
       )}
       <HoverCardPrimitive.Root
-        onOpenChange={(open) => setOpen(open)}
+        onOpenChange={(open) => setIsOpen(open)}
         openDelay={50}
         closeDelay={100}>
         <HoverCardPrimitive.Trigger
