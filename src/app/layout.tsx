@@ -1,8 +1,8 @@
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import { siteConfig } from '@/config/site-config'
 import { inter } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import { Metadata } from 'next'
 import { ReactNode } from 'react'
 
@@ -73,7 +73,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           'bg-background font-sans text-foreground antialiased',
           inter.variable
         )}>
-        <main>{children}</main>
+        {children}
       </body>
     </html>
   )
